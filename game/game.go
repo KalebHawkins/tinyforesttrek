@@ -9,9 +9,12 @@ type Game struct {
 	ScreenWidth, ScreenHeight int
 	Player                    *Player
 	TileMap                   *TileMap
+	Camera                    *Camera
 }
 
 func (g *Game) Update() error {
+	g.Camera.Follow(g.Player.X, g.Player.Y)
+
 	var dx, dy float64
 	if ebiten.IsKeyPressed(ebiten.KeyW) {
 		dy -= 1
@@ -32,8 +35,8 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	g.TileMap.Draw(screen)
-	g.Player.Draw(screen)
+	g.TileMap.Draw(screen, g.Camera)
+	g.Player.Draw(screen, g.Camera)
 }
 
 func (g *Game) Layout(outWidth, outHeight int) (int, int) {
@@ -46,8 +49,14 @@ func NewGame(screenWidth, screenHeight int) *Game {
 		ScreenHeight: screenHeight,
 	}
 
-	g.Player = NewPlayer(float64(g.ScreenWidth)/2, float64(screenHeight)/2, 5.0)
+	g.Player = NewPlayer(0, 0, 5.0)
 	g.TileMap = NewTileMap(40, 30, 64, tiles, assets.Load("tiles.png"))
+	g.Camera = NewCamera(
+		screenWidth,
+		screenHeight,
+		g.TileMap.Width*g.TileMap.TileSize,
+		g.TileMap.Height*g.TileMap.TileSize,
+	)
 
 	return g
 }

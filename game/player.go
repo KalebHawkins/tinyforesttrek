@@ -28,9 +28,9 @@ func (p *Player) Move(dx, dy float64) {
 	p.Y += dy * p.MoveSpeed
 }
 
-func (p *Player) Draw(dst *ebiten.Image) {
+func (p *Player) Draw(dst *ebiten.Image, camera *Camera) {
 	op := &ebiten.DrawImageOptions{}
-	op.GeoM.Translate(p.X, p.Y)
+	op.GeoM.Translate(p.X-camera.X, p.Y-camera.Y)
 	dst.DrawImage(p.Sprite, op)
 }
 
