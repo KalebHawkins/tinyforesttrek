@@ -6,6 +6,7 @@ type Camera struct {
 	ViewPortHeight int
 	WorldWidth     int
 	WorldHeight    int
+	ZoomFactor     float64
 }
 
 func (c *Camera) Follow(targetX, targetY float64) {
@@ -40,6 +41,7 @@ func NewCamera(viewportWidth, viewportHeight, worldWidth, worldHeight int) *Came
 		ViewPortHeight: viewportHeight,
 		WorldWidth:     worldWidth,
 		WorldHeight:    worldHeight,
+		ZoomFactor:     1.0,
 	}
 
 	return c

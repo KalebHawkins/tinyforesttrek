@@ -29,7 +29,7 @@ func (t *TileMap) Draw(dst *ebiten.Image, camera *Camera) {
 			src := t.TileImage.SubImage(image.Rect(sx, sy, sx+t.TileSize, sy+t.TileSize)).(*ebiten.Image)
 
 			op := &ebiten.DrawImageOptions{}
-			op.GeoM.Translate(float64(x*t.TileSize)-camera.X, float64(y*t.TileSize)-camera.Y)
+			op.GeoM.Translate(float64(x*t.TileSize)-camera.X*camera.ZoomFactor, float64(y*t.TileSize)-camera.Y*camera.ZoomFactor)
 			dst.DrawImage(src, op)
 		}
 	}

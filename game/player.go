@@ -30,6 +30,8 @@ func (p *Player) Move(dx, dy float64) {
 
 func (p *Player) Draw(dst *ebiten.Image, camera *Camera) {
 	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(-float64(p.Sprite.Bounds().Dx())/2, -float64(p.Sprite.Bounds().Dy())/2)
+	op.GeoM.Scale(camera.ZoomFactor, camera.ZoomFactor)
 	op.GeoM.Translate(p.X-camera.X, p.Y-camera.Y)
 	dst.DrawImage(p.Sprite, op)
 }
