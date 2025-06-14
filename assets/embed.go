@@ -10,10 +10,10 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-//go:embed *.png
+//go:embed *
 var Assets embed.FS
 
-func Load(file string) *ebiten.Image {
+func LoadImage(file string) *ebiten.Image {
 	f, err := Assets.ReadFile(file)
 	if err != nil {
 		log.Fatal(err)
@@ -25,4 +25,13 @@ func Load(file string) *ebiten.Image {
 	}
 
 	return ebiten.NewImageFromImage(img)
+}
+
+func LoadAudio(file string) []byte {
+	f, err := Assets.ReadFile(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return f
 }

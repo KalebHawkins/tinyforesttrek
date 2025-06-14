@@ -1,7 +1,6 @@
 package game
 
 import (
-	"image/color"
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -36,15 +35,13 @@ func (p *Player) Draw(dst *ebiten.Image, camera *Camera) {
 	dst.DrawImage(p.Sprite, op)
 }
 
-func NewPlayer(x, y, moveSpeed float64) *Player {
+func NewPlayer(x, y, moveSpeed float64, sprite *ebiten.Image) *Player {
 	p := &Player{
-		Sprite:    ebiten.NewImage(16, 16),
+		Sprite:    sprite,
 		X:         x,
 		Y:         y,
 		MoveSpeed: moveSpeed,
 	}
-
-	p.Sprite.Fill(color.White)
 
 	return p
 }
