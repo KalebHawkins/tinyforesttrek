@@ -8,7 +8,22 @@ type Game struct {
 }
 
 func (g *Game) Update() error {
-	g.Player.Update()
+	var dx, dy float64
+	if ebiten.IsKeyPressed(ebiten.KeyW) {
+		dy -= 1
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyA) {
+		dx -= 1
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyS) {
+		dy += 1
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyD) {
+		dx += 1
+	}
+
+	g.Player.Move(dx, dy)
+
 	return nil
 }
 

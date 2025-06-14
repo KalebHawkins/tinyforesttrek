@@ -13,7 +13,7 @@ const (
 )
 
 func main() {
-	ebiten.SetWindowSize(ScreenWidth, ScreenHeight)
+	ebiten.SetWindowSize(ScreenWidth*2, ScreenHeight*2)
 	ebiten.SetWindowTitle("Tiny Forest Trek")
 
 	if err := ebiten.RunGame(game.NewGame(ScreenWidth, ScreenHeight)); err != nil {
