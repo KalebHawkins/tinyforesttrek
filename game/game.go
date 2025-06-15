@@ -34,7 +34,6 @@ type Game struct {
 	FontFace                  *text.GoTextFace
 	FlashTimer                int
 	TotalOrbs                 int
-	SampleRate                int
 	PickupAudio               []byte
 }
 
@@ -154,7 +153,6 @@ func NewGame(screenWidth, screenHeight int) *Game {
 	g := &Game{
 		ScreenWidth:  screenWidth,
 		ScreenHeight: screenHeight,
-		SampleRate:   44100,
 		Player:       NewPlayer(0, 0, 5.0, assets.LoadImage("player.png")),
 		TileMap:      NewTileMap(40, 30, 64, tiles, assets.LoadImage("tiles.png")),
 		PickupAudio:  assets.LoadAudio("orb_pickup.wav"),
